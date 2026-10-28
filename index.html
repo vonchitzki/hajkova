@@ -1,0 +1,324 @@
+<!doctype html>
+<html lang="cs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Marketa Hajkova</title>
+<meta name="description" content="Marketa Hajkova. Svatební šaty a kolekce šité na míru.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --white:#ffffff;
+    --paper:#f5f4f1;
+    --black:#111111;
+    --ink:#1a1a1a;
+    --grey:#6a6a6a;
+    --line:#e2e0dc;
+    --display:"Bebas Neue","Oswald","Arial Narrow",sans-serif;
+    --sans:"Helvetica Neue",Helvetica,Arial,sans-serif;
+    --gutter:clamp(20px,4vw,64px);
+    --ease:cubic-bezier(.19,1,.22,1);
+  }
+  *,*::before,*::after{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+  body{margin:0;background:var(--white);color:var(--ink);font-family:var(--sans);font-weight:400;font-size:16px;line-height:1.6;letter-spacing:0;-webkit-font-smoothing:antialiased;caret-color:var(--ink)}
+  ::selection{background:var(--black);color:var(--white)}
+  img{display:block;max-width:100%;height:auto}
+  a{color:inherit;text-decoration:none}
+  :focus-visible{outline:1px solid currentColor;outline-offset:4px}
+  button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
+
+  h1,.brand{font-family:var(--display);font-weight:400;letter-spacing:0;text-transform:uppercase;margin:0}
+  h2{font-family:var(--sans);font-weight:700;letter-spacing:-.03em;margin:0}
+
+  /* ---------- nav (runway) ---------- */
+  .nav{
+    position:fixed;inset:0 0 auto 0;z-index:20;
+    display:grid;grid-template-columns:1fr auto 1fr;align-items:center;
+    height:64px;padding:0 var(--gutter);color:var(--white);
+    transition:color .3s var(--ease),background-color .4s var(--ease);
+  }
+  .nav::after{content:"";position:absolute;left:var(--gutter);right:var(--gutter);bottom:0;height:1px;background:currentColor;opacity:.35}
+  .nav.is-solid{color:var(--ink);background:rgba(255,255,255,.96)}
+  .nav ul{list-style:none;margin:0;padding:0;display:flex;gap:28px}
+  .nav li a{font-size:12px;letter-spacing:.12em;text-transform:uppercase;font-weight:400;position:relative;padding:4px 0}
+  .nav li a::after{content:"";position:absolute;left:0;right:100%;bottom:0;height:1px;background:currentColor;transition:right .35s var(--ease)}
+  .nav li a:hover::after,.nav li a[aria-current]::after{right:0}
+  .nav .brand{font-size:24px;line-height:1;opacity:0;transition:opacity .4s var(--ease);justify-self:center;white-space:nowrap;padding-top:2px}
+  .nav.is-solid .brand{opacity:1}
+  .nav .ig{justify-self:end;display:inline-flex;width:40px;height:40px;align-items:center;justify-content:center;margin-right:-10px}
+  .nav .ig svg{width:18px;height:18px}
+  .nav .menu{display:none}
+  @media (max-width:860px){
+    .nav{grid-template-columns:auto 1fr auto;height:56px}
+    .nav ul{display:none}
+    .nav .brand{justify-self:start;opacity:1;font-size:22px}
+    .nav .menu{display:inline-flex;align-items:center;height:40px;font-size:12px;letter-spacing:.12em;text-transform:uppercase;justify-self:end;padding:0 10px}
+    .nav[data-open]{color:var(--ink);background:var(--white)}
+    .nav[data-open] ul{display:flex;flex-direction:column;gap:0;position:fixed;inset:56px 0 0 0;background:var(--white);color:var(--ink);padding:16px var(--gutter)}
+    .nav[data-open] li a{display:block;font-weight:700;font-size:30px;letter-spacing:-.03em;text-transform:none;padding:14px 0;border-bottom:1px solid var(--line)}
+    .nav[data-open] li a::after{display:none}
+  }
+
+  /* ---------- hero (runway) ---------- */
+  .hero{position:relative;height:100svh;min-height:560px;overflow:hidden;background:var(--black);color:var(--white)}
+  .hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 30%;filter:grayscale(1) contrast(1.02)}
+  .hero::before{content:"";position:absolute;inset:0 0 auto 0;height:22%;z-index:1;background:linear-gradient(to bottom,rgba(0,0,0,.5),rgba(0,0,0,0))}
+  .hero::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 55% 40% at 50% 50%,rgba(0,0,0,.38),rgba(0,0,0,0)),linear-gradient(to top,rgba(0,0,0,.35),rgba(0,0,0,0) 40%)}
+  .hero h1{
+    position:absolute;inset:0;z-index:2;
+    padding:0 var(--gutter);
+    display:flex;align-items:center;justify-content:center;text-align:center;
+    font-size:99px;line-height:.95;letter-spacing:0;
+  }
+  .hero h1 span{display:inline-block;padding:0 .1em}
+  @media (max-width:860px){
+    .hero h1{flex-direction:column}
+    .hero h1 span{padding:0}
+  }
+  @media (prefers-reduced-motion:no-preference){
+    .hero h1 span{animation:rise 1.1s var(--ease) both}
+    .hero h1 span:nth-child(2){animation-delay:.08s}
+    @keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+  }
+
+  /* ---------- plates (lookbook) ---------- */
+  .plates{padding:clamp(80px,11vw,170px) var(--gutter) 0}
+  .plate{display:grid;grid-template-columns:repeat(12,1fr);gap:0 var(--gutter);align-items:center}
+  .plate + .plate{margin-top:clamp(80px,11vw,170px)}
+  .plate figure{margin:0;grid-column:2 / span 5;background:var(--paper)}
+  .plate figure img{width:100%;aspect-ratio:4/5;object-fit:cover;filter:saturate(.6)}
+  .plate .text{grid-column:8 / span 4}
+  .plate.alt figure{grid-column:7 / span 5;grid-row:1}
+  .plate.alt .text{grid-column:2 / span 4;grid-row:1}
+  .plate h2{font-size:clamp(32px,3.4vw,48px);line-height:1.05;margin:0 0 20px}
+  .plate p{margin:0 0 30px;max-width:36ch;color:#3a3a3a}
+  .link{display:inline-block;font-size:12px;letter-spacing:.08em;font-weight:400;padding-bottom:3px;border-bottom:1px solid currentColor;transition:opacity .3s}
+  .link:hover{opacity:.5}
+  @media (max-width:860px){
+    .plate,.plate.alt{display:block}
+    .plate .text,.plate.alt .text{padding:28px 0 0}
+    .plate h2{font-size:32px}
+  }
+
+  /* ---------- media (lookbook band, logos) ---------- */
+  .media{margin:clamp(80px,11vw,170px) var(--gutter) 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:36px 0 40px;overflow:hidden}
+  .media h2{margin:0 0 30px;text-align:center;font-size:20px;color:var(--grey)}
+  .media .track{display:flex;width:max-content;animation:marquee 44s linear infinite}
+  .media:hover .track{animation-play-state:paused}
+  .media ul{list-style:none;margin:0;padding:0;display:flex;align-items:center}
+  .media li{padding:0 clamp(32px,4.5vw,80px);display:flex;align-items:center}
+  .media img{height:clamp(22px,2.2vw,30px);width:auto;max-width:none;filter:grayscale(1);opacity:.78;transition:opacity .3s}
+  .media li:hover img{opacity:1}
+  @keyframes marquee{to{transform:translateX(-50%)}}
+  @media (prefers-reduced-motion:reduce){.media .track{animation:none;width:100%;overflow-x:auto;scrollbar-width:none}.media ul:last-child{display:none}}
+
+  /* ---------- gallery (lookbook) ---------- */
+  .gallery{padding:clamp(56px,7vw,110px) 0 0}
+  .gallery header{display:flex;align-items:baseline;justify-content:space-between;margin:0 var(--gutter) 28px}
+  .gallery h2{font-size:clamp(32px,3.4vw,48px);line-height:1.05}
+  .gallery .ctrl{display:flex;align-items:center;gap:18px}
+  .gallery .count{font-size:12px;letter-spacing:.08em;color:var(--grey);font-variant-numeric:tabular-nums}
+  .gallery .arrow{width:44px;height:44px;border:1px solid var(--line);border-radius:50%;display:inline-flex;align-items:center;justify-content:center;transition:border-color .3s,opacity .3s}
+  .gallery .arrow:hover{border-color:var(--ink)}
+  .gallery .arrow[disabled]{opacity:.3;cursor:default}
+  .gallery .arrow svg{width:16px;height:12px;overflow:visible}
+  .gallery .track{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;padding:0 var(--gutter);scroll-padding:0 var(--gutter);scrollbar-width:none;overscroll-behavior-x:contain}
+  .gallery .track::-webkit-scrollbar{display:none}
+  .gallery figure{margin:0;flex:0 0 auto;width:min(72vw,380px);scroll-snap-align:start;background:var(--paper)}
+  .gallery figure img{width:100%;aspect-ratio:4/5;object-fit:cover;filter:saturate(.6)}
+  .gallery figcaption{padding:12px 0 0;font-size:12px;color:var(--grey);letter-spacing:.04em}
+  .gallery figure:last-child{margin-right:var(--gutter)}
+
+  /* ---------- contact (lookbook) ---------- */
+  .contact{padding:clamp(90px,12vw,180px) var(--gutter) clamp(90px,12vw,170px)}
+  .contact .wrap{max-width:560px;margin:0 auto;text-align:center}
+  .contact h2{font-size:clamp(32px,3.4vw,48px);line-height:1.05;margin:0 0 18px}
+  .contact p{margin:0 auto 54px;max-width:40ch;color:#3a3a3a}
+  .contact form{display:grid;gap:30px;text-align:left}
+  .field{display:grid;gap:8px}
+  .field label{font-size:12px;letter-spacing:.08em;color:var(--grey);font-weight:400}
+  .field input,.field textarea{width:100%;background:transparent;border:0;border-bottom:1px solid #cfcdc8;border-radius:0;color:var(--ink);font:inherit;font-weight:400;font-size:16px;padding:4px 0 12px;transition:border-color .3s}
+  .field textarea{resize:vertical;min-height:110px}
+  .field input:focus,.field textarea:focus{outline:none;border-bottom-color:var(--ink)}
+  .submit{margin-top:8px;display:block;width:100%;background:var(--ink);color:var(--white);font-size:12px;font-weight:400;letter-spacing:.14em;text-transform:uppercase;padding:20px;line-height:1;transition:background .3s}
+  .submit:hover{background:var(--black)}
+
+  /* ---------- footer (lookbook) ---------- */
+  .footer{background:var(--paper);padding:56px var(--gutter) 32px;color:var(--grey);font-size:12px}
+  .footer .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:24px var(--gutter);align-items:start}
+  .footer .brand{grid-column:1 / span 4;font-size:24px;line-height:1;color:var(--ink)}
+  .footer nav{grid-column:5 / span 4}
+  .footer ul{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+  .footer .social{grid-column:9 / span 4;display:grid;gap:10px}
+  .footer .ig{display:inline-flex;align-items:center;gap:10px}
+  .footer .ig svg{width:16px;height:16px}
+  .footer a:hover{color:var(--ink)}
+  .footer .legal{margin-top:48px;padding-top:20px;border-top:1px solid var(--line);display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:12px;color:var(--grey)}
+  @media (max-width:860px){.footer .grid{display:grid;grid-template-columns:1fr 1fr}.footer .brand{grid-column:1 / -1}.footer nav,.footer .social{grid-column:auto}}
+
+  @media (prefers-reduced-motion:no-preference){
+    .reveal{opacity:0;transform:translateY(14px);transition:opacity 1s var(--ease),transform 1s var(--ease)}
+    .reveal.in{opacity:1;transform:none}
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav" id="nav" aria-label="Hlavní navigace">
+  <ul id="menu">
+    <li><a href="#" aria-current="page">Domů</a></li>
+    <li><a href="#svatebni">Svatební</a></li>
+    <li><a href="#kolekce">Kolekce</a></li>
+    <li><a href="#">O mně</a></li>
+    <li><a href="#kontakt">Kontakt</a></li>
+  </ul>
+  <a class="brand" href="#">Marketa Hajkova</a>
+  <button class="menu" type="button" aria-expanded="false" aria-controls="menu" id="menuBtn">Menu</button>
+  <a class="ig" href="#" aria-label="Instagram" title="Instagram">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r=".9" fill="currentColor" stroke="none"/></svg>
+  </a>
+</nav>
+
+<header class="hero">
+  <!-- placeholder photography (Unsplash), replace with the designer's own -->
+  <img src="https://images.unsplash.com/photo-1532454781337-fc3edff34f91?w=2000&q=80&auto=format&fit=max"
+       srcset="https://images.unsplash.com/photo-1532454781337-fc3edff34f91?w=1000&q=80&auto=format&fit=max 1000w, https://images.unsplash.com/photo-1532454781337-fc3edff34f91?w=2000&q=80&auto=format&fit=max 2000w"
+       sizes="100vw" alt="Nevěsta v bílých šatech před zrcadlem" fetchpriority="high">
+  <h1><span>Marketa</span><span>Hajkova</span></h1>
+</header>
+
+<main>
+  <section class="plates">
+    <article class="plate reveal" id="svatebni">
+      <figure><img src="https://images.unsplash.com/photo-1585241920473-b472eb9ffbae?w=1400&q=80&auto=format&fit=max" alt="Krajková záda svatebních šatů" loading="lazy"></figure>
+      <div class="text">
+        <h2>Svatební</h2>
+        <p>Šaty pro jeden den, šité pro jedno tělo. Od první skici přes zkoušky v ateliéru až po poslední steh vznikají v mých rukou.</p>
+        <a class="link" href="#">Svatební šaty</a>
+      </div>
+    </article>
+    <article class="plate alt reveal" id="kolekce">
+      <figure><img src="https://images.unsplash.com/photo-1645996830718-127f7e4f74fc?w=1400&q=80&auto=format&fit=max" alt="Modelka v černém topu před šedým pozadím" loading="lazy"></figure>
+      <div class="text">
+        <h2>Kolekce</h2>
+        <p>Sezónní kolekce v malých sériích. Čisté linie, přírodní materiály a střihy, které vydrží déle než jednu sezónu.</p>
+        <a class="link" href="#">Prohlédnout kolekce</a>
+      </div>
+    </article>
+  </section>
+
+  <section class="media" aria-label="Media">
+    <h2>Media</h2>
+    <!-- placeholder logos (public-domain wordmarks from Wikimedia Commons); replace with the designer's confirmed press list -->
+    <div class="track">
+      <ul>
+        <li><img src="assets/media/vogue-logo.svg" alt="Vogue"></li>
+        <li><img src="assets/media/elle-logo.svg" alt="Elle"></li>
+        <li><img src="assets/media/harpers-bazaar-logo.svg" alt="Harper’s Bazaar"></li>
+        <li><img src="assets/media/marie-claire-magazine-logo.svg" alt="Marie Claire"></li>
+        <li><img src="assets/media/cosmopolitan-logo.svg" alt="Cosmopolitan"></li>
+        <li><img src="assets/media/glamour-logo.svg" alt="Glamour"></li>
+      </ul>
+      <ul aria-hidden="true">
+        <li><img src="assets/media/vogue-logo.svg" alt=""></li>
+        <li><img src="assets/media/elle-logo.svg" alt=""></li>
+        <li><img src="assets/media/harpers-bazaar-logo.svg" alt=""></li>
+        <li><img src="assets/media/marie-claire-magazine-logo.svg" alt=""></li>
+        <li><img src="assets/media/cosmopolitan-logo.svg" alt=""></li>
+        <li><img src="assets/media/glamour-logo.svg" alt=""></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="gallery" aria-label="Galerie">
+    <header>
+      <h2>Galerie</h2>
+      <div class="ctrl">
+        <span class="count" id="count">1 / 8</span>
+        <button class="arrow" type="button" id="prev" aria-label="Předchozí"><svg viewBox="0 0 16 12" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6H1M6 1 1 6l5 5"/></svg></button>
+        <button class="arrow" type="button" id="next" aria-label="Další"><svg viewBox="0 0 16 12" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 6h14M10 1l5 5-5 5"/></svg></button>
+      </div>
+    </header>
+    <!-- placeholder photography; captions name the outlet each image appeared in -->
+    <div class="track" id="track" tabindex="0" aria-label="Galerie, listujte šipkami">
+      <figure><img src="https://images.unsplash.com/photo-1622277430358-f4d134452e2e?w=900&q=80&auto=format&fit=max" alt="Nevěsta u okna" loading="lazy"><figcaption>Elle</figcaption></figure>
+      <figure><img src="https://images.unsplash.com/photo-1744502672203-98316831f121?w=900&q=80&auto=format&fit=max" alt="Ruka v průsvitném rukávu" loading="lazy"><figcaption>Harper’s Bazaar</figcaption></figure>
+      <figure><img src="https://images.unsplash.com/photo-1654580342825-06483f272b87?w=900&q=80&auto=format&fit=max" alt="Nevěsta se závojem" loading="lazy"><figcaption>Marie Claire</figcaption></figure>
+      <figure><img src="https://images.unsplash.com/photo-1764298493197-a1c1cce57800?w=900&q=80&auto=format&fit=max" alt="Béžový kabát zezadu" loading="lazy"><figcaption>Cosmopolitan</figcaption></figure>
+      <figure><img src="https://images.unsplash.com/photo-1520279112320-689d45cea674?w=900&q=80&auto=format&fit=max" alt="Nevěsta s kloboukem u zdi" loading="lazy"><figcaption>Glamour</figcaption></figure>
+      <figure><img src="https://images.unsplash.com/photo-1578747522731-9e5a179b02f7?w=900&q=80&auto=format&fit=max" alt="Lněné šaty na ramínku" loading="lazy"><figcaption>Elle</figcaption></figure>
+      <figure><img src="https://images.unsplash.com/photo-1631687688319-ffd10d7e530b?w=900&q=80&auto=format&fit=max" alt="Nevěsta s botami v ruce" loading="lazy"><figcaption>Harper’s Bazaar</figcaption></figure>
+      <figure><img src="https://images.unsplash.com/photo-1581248867736-a4bd2f29f2de?w=900&q=80&auto=format&fit=max" alt="Silueta nevěsty u okna" loading="lazy"><figcaption>Marie Claire</figcaption></figure>
+    </div>
+  </section>
+
+  <section class="contact" id="kontakt">
+    <div class="wrap reveal">
+      <h2>Napište mi</h2>
+      <p>Svatební šaty, kousek z kolekce nebo zakázka na míru. Napište, co máte na mysli, a domluvíme se na schůzce v ateliéru.</p>
+      <form action="#" method="post">
+        <div class="field"><label for="name">Jméno</label><input id="name" name="name" type="text" autocomplete="name" required></div>
+        <div class="field"><label for="email">E-mail</label><input id="email" name="email" type="email" autocomplete="email" required></div>
+        <div class="field"><label for="msg">Zpráva</label><textarea id="msg" name="message" rows="4" required></textarea></div>
+        <button class="submit" type="submit">Odeslat</button>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="grid">
+    <a class="brand" href="#">Marketa Hajkova</a>
+    <nav aria-label="Patička">
+      <ul>
+        <li><a href="#">Domů</a></li>
+        <li><a href="#svatebni">Svatební</a></li>
+        <li><a href="#kolekce">Kolekce</a></li>
+        <li><a href="#">O mně</a></li>
+        <li><a href="#kontakt">Kontakt</a></li>
+      </ul>
+    </nav>
+    <div class="social">
+      <a class="ig" href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r=".9" fill="currentColor" stroke="none"/></svg>Instagram</a>
+      <a href="#kontakt">Napište mi</a>
+    </div>
+  </div>
+  <div class="legal"><span>© 2026 Marketa Hajkova</span><span>Všechna práva vyhrazena</span></div>
+</footer>
+
+<script>
+(function(){
+  var nav=document.getElementById('nav'),hero=document.querySelector('.hero'),btn=document.getElementById('menuBtn');
+  function close(){nav.removeAttribute('data-open');btn.setAttribute('aria-expanded','false');btn.textContent='Menu';}
+  btn.addEventListener('click',function(){if(nav.hasAttribute('data-open'))close();else{nav.setAttribute('data-open','');btn.setAttribute('aria-expanded','true');btn.textContent='Zavřít';}});
+  nav.querySelectorAll('ul a').forEach(function(a){a.addEventListener('click',close);});
+  if('IntersectionObserver' in window){
+    new IntersectionObserver(function(e){nav.classList.toggle('is-solid',!e[0].isIntersecting);},{rootMargin:'-64px 0px 0px 0px'}).observe(hero);
+    var ro=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');ro.unobserve(e.target);}});},{threshold:.15});
+    document.querySelectorAll('.reveal').forEach(function(el){ro.observe(el);});
+  }else{document.querySelectorAll('.reveal').forEach(function(el){el.classList.add('in');});}
+
+  var track=document.getElementById('track'),prev=document.getElementById('prev'),next=document.getElementById('next'),count=document.getElementById('count');
+  var items=track.querySelectorAll('figure'),n=items.length;
+  function step(){return items[0].getBoundingClientRect().width+16;}
+  function update(){
+    var i=Math.min(n-1,Math.max(0,Math.round(track.scrollLeft/step())));
+    count.textContent=(i+1)+' / '+n;
+    prev.disabled=track.scrollLeft<=2;
+    next.disabled=track.scrollLeft+track.clientWidth>=track.scrollWidth-2;
+  }
+  function go(d){track.scrollBy({left:d*step(),behavior:'smooth'});}
+  prev.addEventListener('click',function(){go(-1);});
+  next.addEventListener('click',function(){go(1);});
+  track.addEventListener('keydown',function(e){if(e.key==='ArrowRight'){go(1);e.preventDefault();}if(e.key==='ArrowLeft'){go(-1);e.preventDefault();}});
+  track.addEventListener('scroll',function(){window.requestAnimationFrame(update);},{passive:true});
+  window.addEventListener('resize',update);
+  update();
+})();
+</script>
+</body>
+</html>
