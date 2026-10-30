@@ -10,9 +10,11 @@ related_targets: []
 Scope: homepage of the Marketa Hajkova site, visitor mode Experience; the contact form is the one Persuade moment at the end.
 Audience: brides and clients arriving from Instagram on a phone; editors on desktop. Job: see the work, believe in the designer, write.
 Proof/content: placeholder stock photography (Unsplash), placeholder press logos (public-domain wordmarks from Wikimedia Commons), all listed in README.md for replacement. No claims invented.
-Constraints pinned by the user: minimalist; white, black, beige, grey only; nav = pages + logotype "Marketa Hajkova" + Instagram icon; sections in order hero, Svatební, Kolekce, Media (logos), Galerie (press images) directly under Media, contact form, footer; Czech copy, English-ready; fonts Bebas Neue for headlines, Helvetica for body (user decision 2026-10-28).
+Constraints pinned by the user: minimalist; white, black, beige, grey only; nav = pages + logotype "Marketa Hajkova" + Instagram icon; sections in order hero, Svatební, Kolekce, Media (logos), Galerie (press images) directly under Media, contact form, footer; Czech copy, English-ready; fonts Bebas Neue for headlines, Helvetica for body (user decision 2026-10-28), superseded 2026-10-30: hero, fonts, image borders and navigation style and behavior taken from alexandragrecco.com (logotype kept in Bebas Neue by user decision 2026-10-30; free stand-ins: Pinyon Script titles, Cormorant Garamond text, Jost labels).
 
 User decision 2026-10-28: hero and navigation from option A (runway), everything below from option B (lookbook). The three exploratory options stay in options/ as archive.
+
+User decision 2026-10-30: hero becomes a fixed grayscale triptych with no text overlay; nav is a white bar starting under the hero that rises and sticks (mobile: burger + full-screen script menu); photos sit in a beige mat.
 
 ## Direction contract
 
